@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+  <!-- Enable feature -->
+  <featureManager>
+    <feature>jsfContainer-2.2</feature>
+    <!-- To enable running task in the background -->
+    <feature>concurrent-1.0</feature>
+    <feature>javaMail-1.5</feature>
+  </featureManager>  
+  
+  <!-- To access this server from a remote client add a host attribute to the following element, e.g host="*" -->
+  <httpEndpoint id="defaultHttpEndpoint"
+                host="*"
+                httpPort="9080"
+                httpsPort="9443" />
+  
+  <!-- To avoid overwriting of JSESSIONID between different application based on context root -->
+  <httpSession useContextRootAsCookiePath="true" cookieSecure="true" />
+  
+  <!-- disable servlet version disclosure -->
+  <webContainer disableXPoweredBy="true"/>
+  
+  <applicationMonitor updateTrigger="mbean"/>
+  
+  <!-- we have no CDI beans -->
+  <cdi12 enableImplicitBeanArchives="false"/>
+</server>
