@@ -12,39 +12,39 @@ Open Liberty is fast to start up with a low memory footprint and live reload for
 
 1.Login to Container Registry
 
-  Before you can pull and push images you have to create container registry . 
-    1. Docker Registry
-    2. Azure Container Registry
-    3. Amazon Container Registry
+    Before you can pull and push images you have to create container registry . 
+      1. Docker Registry
+      2. Azure Container Registry
+      3. Amazon Container Registry
 
-  docker login --username <USERNAME> [--password <PASSWORD>]
+    docker login --username <USERNAME> [--password <PASSWORD>]
 
-  docker login <Azure Container Registry> --username <USERNAME> [--password <PASSWORD>]
-  
-  az acr login -n <Azure Container Registry>
+    docker login <Azure Container Registry> --username <USERNAME> [--password <PASSWORD>]
+
+    az acr login -n <Azure Container Registry>
   
 2.Build Image
 
-  You can build the images with following command in your local machine.
-  
-  docker build -t <Docker Container Registry>/open-liberty[:tag]
-  docker build -t <Azure Container Registry>/open-liberty[:tag]
+    You can build the images with following command in your local machine.
 
-  If you are working under proxy, you have to add the following details in you image/container
-  --build-arg http_proxy="http://${PROXY_USER}:${PROXY_PASSWD}@[DOMAIN_NAME]:[PORT_NUMBER]"
-  --build-arg https_proxy="http://${PROXY_USER}:${PROXY_PASSWD}@[DOMAIN_NAME]:[PORT_NUMBER]"
+    docker build -t <Docker Container Registry>/open-liberty[:tag]
+    docker build -t <Azure Container Registry>/open-liberty[:tag]
+
+    If you are working under proxy, you have to add the following details in you image/container
+    --build-arg http_proxy="http://${PROXY_USER}:${PROXY_PASSWD}@[DOMAIN_NAME]:[PORT_NUMBER]"
+    --build-arg https_proxy="http://${PROXY_USER}:${PROXY_PASSWD}@[DOMAIN_NAME]:[PORT_NUMBER]"
   
 3.Push Image  
   
-  If you want to store docker images in any registry you have to follow the following commands
-  
-  docker push -t <Docker Container Registry>/open-liberty[:tag]
-  docker push -t <Azure Container Registry>/open-liberty[:tag]
+    If you want to store docker images in any registry you have to follow the following commands
+
+    docker push -t <Docker Container Registry>/open-liberty[:tag]
+    docker push -t <Azure Container Registry>/open-liberty[:tag]
   
 4.Pull Image
 
-  If you want to retrivew from container registry you have to follow the following commands
-  
-  docker pull -t <Docker Container Registry>/open-liberty[:tag]
-  docker pull -t <Azure Container Registry>/open-liberty[:tag]
-  
+    If you want to retrivew from container registry you have to follow the following commands
+
+    docker pull -t <Docker Container Registry>/open-liberty[:tag]
+    docker pull -t <Azure Container Registry>/open-liberty[:tag]
+
