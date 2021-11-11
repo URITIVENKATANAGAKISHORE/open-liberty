@@ -1,0 +1,32 @@
+pr: none
+
+variables:
+
+  global_isMaster: $[eq(variables['Build.SourceBranch'],'refs/heads/main')]
+  global_repository: 'open-liberty'
+  global_dockerVersionTag: $(pipeline.dockerVersionTag)
+
+pool:
+  vmImage: $(pipeline.pool.vmImage)
+
+steps:
+  - task: Docker@2
+    displayName: 'Build Open Liberty Base Image'
+    inputs:
+      containerRegistry: $(pipeline.containerRegistry)
+      repository: $(global_repository)
+      command: build
+      tags: | 
+        latest
+        $(global_dockerVersionTag)
+  - task: Docker@2
+    condition: and(succeeded(),eq(variables.global_isMain, true))
+    displayName: 'Push Open Liberty'
+    inputs:
+     containerRegistry: $(pipeline.containerRegistry)
+     repository: $(global_repository)
+     command: push
+     tags: |
+       latest
+       $(global_dockerVersionTag)
+   
